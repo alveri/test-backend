@@ -1,5 +1,16 @@
 # AutoBidMaster Backend Developer Test
 
+## Usage
+After docker environment will start you shoudl enter main container ( for example usong command `make tty`)
+And run next commands
+ - `php bin/console doctrine:migrations:migrate` - to run migrations
+ - `php bin/console vehicles:import-from-csv` = to import data from csv file
+
+After these actions records about Vehicles will be avaliable on `http://localhost:8012/api/vehicles` endpoint
+ - For search use `/{fieldName}={searchValue}` syntax in URL (for example `http://localhost:8012/api/vehicles?vin=1RNF48A296R014302`). Note that search works by vin or vehicleIdField
+ - For sorting results use `?order[{fieldSorting}]={orderSorting}` syntax in URL. For example: `http://localhost:8012/api/vehicles?order[brandName]=desc`. Sorting works on fiels brandName, modelName and saleDate
+ - For pagination just use GET parameter `page`. For example `http://localhost:8012/api/vehicles?page=3`
+
 ## Application
 The application should implement the following design/features:  
   - Generate a vehicle table to accommodate the data listed in /assets/data/test.csv.  This table should be generated using
