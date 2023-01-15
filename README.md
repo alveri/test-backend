@@ -3,6 +3,7 @@
 ## Usage
 After docker environment will start you shoudl enter main container ( for example usong command `make tty`)
 And run next commands
+ - `composer install`
  - `php bin/console doctrine:migrations:migrate` - to run migrations
  - `php bin/console vehicles:import-from-csv` = to import data from csv file
 
