@@ -19,32 +19,23 @@ class VehicleRepository extends ServiceEntityRepository
         parent::__construct($registry, Vehicle::class);
     }
 
-    // /**
-    //  * @return Vehicle[] Returns an array of Vehicle objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function add(Vehicle $entity, bool $flush = false): void
     {
-        return $this->createQueryBuilder('v')
-            ->andWhere('v.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('v.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+        $this->getEntityManager()->persist($entity);
 
-    /*
-    public function findOneBySomeField($value): ?Vehicle
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+
+
+    public function findOneByVehicleId(int $vehicleId): ?Vehicle
     {
         return $this->createQueryBuilder('v')
-            ->andWhere('v.exampleField = :val')
-            ->setParameter('val', $value)
+            ->andWhere('v.vehicleId = :val')
+            ->setParameter('val', $vehicleId)
             ->getQuery()
             ->getOneOrNullResult()
         ;
     }
-    */
 }
