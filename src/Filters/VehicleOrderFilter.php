@@ -16,8 +16,6 @@ final class VehicleOrderFilter extends OrderFilter
         string $operationName = null
     )
     {
-        $parameterName = $queryNameGenerator->generateParameterName($property);
-
         $vehicle = $queryBuilder->getRootAliases()[0];
         if ($property === 'saleDate') {
             $queryBuilder->addOrderBy($vehicle.'.saleDate', $value);
@@ -30,9 +28,5 @@ final class VehicleOrderFilter extends OrderFilter
             $queryBuilder->join('m.brand', 'b')
                 ->addOrderBy('b.name', $value);
         }
-        /*dump($property);
-        dump($value);
-        dump($resourceClass);
-        dd(1111);*/
     }
 }
